@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SensioLabs\Storyblok\Api\Bundle\DependencyInjection;
 
 use SensioLabs\Storyblok\Api\Bundle\DataCollector\StoryblokCollector;
+use SensioLabs\Storyblok\Api\Bundle\Listener\UpdateProfilerListener;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -27,6 +28,7 @@ final class StoryblokApiExtension extends Extension
 
         if (false === $container->getParameter('kernel.debug')) {
             $container->removeDefinition(StoryblokCollector::class);
+            $container->removeDefinition(UpdateProfilerListener::class);
         } else {
             $httpClient = $container->getDefinition('storyblok.http_client');
 

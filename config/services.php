@@ -7,6 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
 use SensioLabs\Storyblok\Api\Bundle\DataCollector\StoryblokCollector;
+use SensioLabs\Storyblok\Api\Bundle\Listener\UpdateProfilerListener;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApi;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApiInterface;
 use SensioLabs\Storyblok\Api\LinksApi;
@@ -19,6 +20,7 @@ use SensioLabs\Storyblok\Api\TagsApi;
 use SensioLabs\Storyblok\Api\TagsApiInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 return static function (ContainerConfigurator $container): void {
     $container->services()
@@ -72,6 +74,13 @@ return static function (ContainerConfigurator $container): void {
             ])
             ->tag('data_collector', [
                 'priority' => 255,
+            ])
+
+        ->set(UpdateProfilerListener::class)
+            ->tag('kernel.event_listener', [
+                'event' => KernelEvents::RESPONSE,
+                'method' => 'onKernelResponse',
+                'priority' => -255,
             ])
     ;
 };
