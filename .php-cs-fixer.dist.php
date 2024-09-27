@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of Storyblok-Api.
+ * This file is part of sensiolabs-de/storyblok-api-bundle.
  *
  * (c) SensioLabs Deutschland <info@sensiolabs.de>
  *
@@ -16,7 +16,7 @@ use Ergebnis\PhpCsFixer\Config\Rules;
 use Ergebnis\PhpCsFixer\Config\RuleSet\Php83;
 
 $header = <<<'HEADER'
-This file is part of Storyblok-Api.
+This file is part of sensiolabs-de/storyblok-bundle.
 
 (c) SensioLabs Deutschland <info@sensiolabs.de>
 
@@ -93,6 +93,7 @@ $config->getFinder()
     ->append([
         __DIR__.'/.php-cs-fixer.dist.php',
     ])
+    ->notPath('DependencyInjection/Configuration.php')
     ->in('src')
     ->in('tests');
 

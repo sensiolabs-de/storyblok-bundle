@@ -6,8 +6,8 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
-use SensioLabs\Storyblok\Api\Bundle\DataCollector\StoryblokCollector;
-use SensioLabs\Storyblok\Api\Bundle\Listener\UpdateProfilerListener;
+use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
+use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApi;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApiInterface;
 use SensioLabs\Storyblok\Api\LinksApi;

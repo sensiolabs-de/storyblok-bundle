@@ -2,7 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SensioLabs\Storyblok\Api\Bundle\DataCollector;
+/**
+ * This file is part of sensiolabs-de/storyblok-api-bundle.
+ *
+ * (c) SensioLabs Deutschland <info@sensiolabs.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace SensioLabs\Storyblok\Bundle\DataCollector;
 
 use Symfony\Bundle\FrameworkBundle\DataCollector\AbstractDataCollector;
 use Symfony\Component\HttpClient\HttpClientTrait;
@@ -77,7 +86,7 @@ final class StoryblokCollector extends AbstractDataCollector implements LateData
 
     public static function getTemplate(): string
     {
-        return '@StoryblokApi/data_collector.html.twig';
+        return '@Storyblok/data_collector.html.twig';
     }
 
     private function collectOnClient(TraceableHttpClient $client): array

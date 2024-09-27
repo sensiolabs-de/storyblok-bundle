@@ -2,10 +2,19 @@
 
 declare(strict_types=1);
 
-namespace SensioLabs\Storyblok\Api\Bundle\DependencyInjection;
+/**
+ * This file is part of sensiolabs-de/storyblok-api-bundle.
+ *
+ * (c) SensioLabs Deutschland <info@sensiolabs.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use SensioLabs\Storyblok\Api\Bundle\DataCollector\StoryblokCollector;
-use SensioLabs\Storyblok\Api\Bundle\Listener\UpdateProfilerListener;
+namespace SensioLabs\Storyblok\Bundle\DependencyInjection;
+
+use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
+use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -13,11 +22,11 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\HttpClient\TraceableHttpClient;
 
-final class StoryblokApiExtension extends Extension
+final class StoryblokExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new PhpFileLoader($container, new FileLocator(dirname(__DIR__).'/../config'));
+        $loader = new PhpFileLoader($container, new FileLocator(\dirname(__DIR__).'/../config'));
         $loader->load('services.php');
 
         $configuration = new Configuration();
@@ -39,10 +48,5 @@ final class StoryblokApiExtension extends Extension
                 ],
             ));
         }
-    }
-
-    public function getAlias(): string
-    {
-        return 'storyblok_api';
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SensioLabs\Storyblok\Api\Bundle\DependencyInjection;
+namespace SensioLabs\Storyblok\Bundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -14,7 +14,7 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('storyblok_api');
+        $treeBuilder = new TreeBuilder('storyblok');
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
