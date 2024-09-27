@@ -29,6 +29,7 @@ return static function (ContainerConfigurator $container): void {
             ->autoconfigure()
 
         ->set('storyblok.http_client')
+            ->class(HttpClient::class)
             ->factory([HttpClient::class, 'create'])
 
         ->set('storyblok.client')

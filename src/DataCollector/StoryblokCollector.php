@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of sensiolabs-de/storyblok-api-bundle.
+ * This file is part of sensiolabs-de/storyblok-bundle.
  *
  * (c) SensioLabs Deutschland <info@sensiolabs.de>
  *

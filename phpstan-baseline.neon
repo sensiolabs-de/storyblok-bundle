@@ -9,3 +9,23 @@ parameters:
 			message: "#^Call to an undefined method Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeDefinition\\:\\:children\\(\\)\\.$#"
 			count: 1
 			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Method SensioLabs\\\\Storyblok\\\\Bundle\\\\Tests\\\\Unit\\\\Listener\\\\UpdateProfilerListenerTest\\:\\:createKernel\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Unit/Listener/UpdateProfilerListenerTest.php
+
+		-
+			message: "#^Method SensioLabs\\\\Storyblok\\\\Bundle\\\\Tests\\\\Util\\\\TestKernel\\:\\:create\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php
+
+		-
+			message: "#^Method SensioLabs\\\\Storyblok\\\\Bundle\\\\Tests\\\\Util\\\\TestKernel\\:\\:debug\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php
+
+		-
+			message: "#^Method SensioLabs\\\\Storyblok\\\\Bundle\\\\Tests\\\\Util\\\\TestKernel\\:\\:environment\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Util/TestKernel.php
