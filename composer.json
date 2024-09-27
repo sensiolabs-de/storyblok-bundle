@@ -1,0 +1,52 @@
+{
+  "name": "sensiolabs-de/storyblok-api-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony bundle for sensiolabs-de/storyblok-api",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Silas Joisten",
+      "email": "silasjoisten@proton.me"
+    }
+  ],
+  "require": {
+    "php": ">=8.3",
+    "sensiolabs-de/storyblok-api": "^3.0",
+    "symfony/config": "^6.0 || ^7.0",
+    "symfony/dependency-injection": "^6.0 || ^7.0",
+    "symfony/framework-bundle": "^6.0 || ^7.0",
+    "symfony/http-client": "^6.0 || ^7.0",
+    "symfony/http-kernel": "^6.0 || ^7.0",
+    "thecodingmachine/safe": "^2.0",
+    "webmozart/assert": "^1.11"
+  },
+  "require-dev": {
+    "ergebnis/composer-normalize": "^2.2",
+    "ergebnis/data-provider": "^3.2",
+    "ergebnis/php-cs-fixer-config": "^6.28",
+    "ergebnis/test-util": "^1.5",
+    "phpstan/extension-installer": "^1.0",
+    "phpstan/phpstan": "^1.0",
+    "phpstan/phpstan-webmozart-assert": "^1.0",
+    "phpunit/phpunit": "^9.0",
+    "thecodingmachine/phpstan-safe-rule": "^1.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "SensioLabs\\Storyblok\\Api\\Bundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SensioLabs\\Storyblok\\Api\\Bundle\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "stable"
+}
