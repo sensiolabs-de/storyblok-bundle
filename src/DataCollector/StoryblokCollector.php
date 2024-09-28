@@ -62,7 +62,7 @@ final class StoryblokCollector extends AbstractDataCollector implements LateData
      */
     public function getTraces(): array
     {
-        return $this->data['traces'];
+        return $this->data['traces'] ?? [];
     }
 
     public function getRequestCount(): int
