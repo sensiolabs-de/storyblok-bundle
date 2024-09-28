@@ -32,7 +32,7 @@ final class StoryblokCollectorTest extends TestCase
         $client = new TraceableHttpClient(new MockHttpClient());
         $collector = new StoryblokCollector($client);
 
-        self::assertSame([], $collector->getTraces());
+        self::assertEmpty($collector->getTraces());
         self::assertSame(0, $collector->getRequestCount());
         self::assertSame(0, $collector->getErrorCount());
     }
@@ -62,6 +62,32 @@ final class StoryblokCollectorTest extends TestCase
 
         self::assertCount(1, $collector->getTraces());
         self::assertSame(1, $collector->getRequestCount());
+        self::assertSame(0, $collector->getErrorCount());
+    }
+
+    /**
+     * @test
+     */
+    public function reset(): void
+    {
+        $client = new TraceableHttpClient(new MockHttpClient([
+            new JsonMockResponse(['hello' => 'there'], ['http_code' => 200]),
+        ]));
+
+        $client->request('GET', 'https://example.com');
+
+        $collector = new StoryblokCollector($client);
+
+        $collector->lateCollect();
+
+        self::assertCount(1, $collector->getTraces());
+        self::assertSame(1, $collector->getRequestCount());
+        self::assertSame(0, $collector->getErrorCount());
+
+        $collector->reset();
+
+        self::assertEmpty($collector->getTraces());
+        self::assertSame(0, $collector->getRequestCount());
         self::assertSame(0, $collector->getErrorCount());
     }
 }
