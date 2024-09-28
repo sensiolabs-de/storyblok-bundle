@@ -127,6 +127,7 @@ final class StoryblokExtensionTest extends TestCase
             $builder,
         );
 
+        self::assertFalse($builder->hasDefinition('storyblok.assets.scoped_http_client'));
         self::assertFalse($builder->hasDefinition('storyblok.assets_client'));
         self::assertFalse($builder->hasAlias(AssetsApiInterface::class));
         self::assertFalse($builder->hasAlias(StoryblokClientInterface::class));
@@ -156,11 +157,12 @@ final class StoryblokExtensionTest extends TestCase
             $builder,
         );
 
+        self::assertTrue($builder->hasDefinition('storyblok.assets.scoped_http_client'));
         self::assertTrue($builder->hasDefinition('storyblok.assets_client'));
         self::assertTrue($builder->hasAlias(AssetsApiInterface::class));
         self::assertTrue($builder->hasAlias(StoryblokClientInterface::class));
         self::assertTrue($builder->hasDefinition(AssetsApi::class));
-        self::assertTrue($builder->hasParameter('storyblok_api.assets_token'));
+
         self::assertSame($token, $builder->getParameter('storyblok_api.assets_token'));
     }
 }
