@@ -30,7 +30,7 @@ return static function (ContainerConfigurator $container): void {
             ->class(HttpClient::class)
             ->factory([HttpClient::class, 'create'])
 
-        ->set('storyblok.client')
+        ->set('storyblok.scoped_http_client')
             ->class(ScopingHttpClient::class)
             ->factory([ScopingHttpClient::class, 'forBaseUri'])
             ->args([
@@ -48,7 +48,7 @@ return static function (ContainerConfigurator $container): void {
                 '$baseUri' => param('storyblok_api.base_uri'),
                 '$token' => param('storyblok_api.token'),
             ])
-            ->call('withHttpClient', [service('storyblok.client')])
+            ->call('withHttpClient', [service('storyblok.scoped_http_client')])
 
         ->set(DatasourceEntriesApi::class)
         ->alias(DatasourceEntriesApiInterface::class,DatasourceEntriesApi::class)

@@ -24,6 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\HttpClient\TraceableHttpClient;
 
 final class StoryblokExtension extends Extension
@@ -62,12 +63,29 @@ final class StoryblokExtension extends Extension
 
     private function configureAssetsApi(ContainerBuilder $container): void
     {
+        $client = new Definition(ScopingHttpClient::class);
+        $client->setFactory([ScopingHttpClient::class, 'forBaseUri']);
+        $client->setArguments([
+            '$client' => $container->getDefinition('storyblok.http_client'),
+            '$baseUri' => $container->getParameter('storyblok_api.base_uri'),
+            '$defaultOptions' => [
+                'query' => [
+                    'token' => $container->getParameter('storyblok_api.assets_token'),
+                ],
+            ],
+        ]);
+
+        $container->setDefinition('storyblok.assets.scoped_http_client', $client);
+
         $definition = new Definition(StoryblokClient::class, [
             '$baseUri' => $container->getParameter('storyblok_api.base_uri'),
             '$token' => $container->getParameter('storyblok_api.assets_token'),
         ]);
 
-        $definition->addMethodCall('withHttpClient', [$container->getDefinition('storyblok.client')]);
+        $definition->addMethodCall(
+            'withHttpClient',
+            [$container->getDefinition('storyblok.assets.scoped_http_client')],
+        );
 
         $container->setDefinition('storyblok.assets_client', $definition);
 
