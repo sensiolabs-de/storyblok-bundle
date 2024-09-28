@@ -17,6 +17,7 @@ use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
 use SensioLabs\Storyblok\Api\StoryblokAssetsClient;
 use SensioLabs\Storyblok\Api\StoryblokClient;
+use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
 use Symfony\Component\Config\FileLocator;
@@ -42,6 +43,7 @@ final class StoryblokExtension extends Extension
         if (\array_key_exists('assets_token', $config)) {
             $container->setParameter('storyblok_api.assets_token', $config['assets_token']);
             $this->configureAssetsApi($container);
+            $container->setAlias(StoryblokClientInterface::class, StoryblokClient::class);
         }
 
         if (false === $container->getParameter('kernel.debug')) {
