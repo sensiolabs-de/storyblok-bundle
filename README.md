@@ -1,5 +1,7 @@
 # Storyblok Bundle
 
+
+
 A Symfony bundle to integrate the [Storyblok headless CMS](https://www.storyblok.com/) with your Symfony application.
 
 This bundle leverages the [sensiolabs-de/storyblok-api](https://github.com/sensiolabs-de/storyblok-api), a type-safe PHP
