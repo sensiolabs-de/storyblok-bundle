@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use SensioLabs\Storyblok\Api\AssetsApi;
-use SensioLabs\Storyblok\Api\AssetsApiInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApi;
@@ -51,11 +49,6 @@ return static function (ContainerConfigurator $container): void {
                 '$token' => param('storyblok_api.token'),
             ])
             ->call('withHttpClient', [service('storyblok.client')])
-
-        ->alias(StoryblokClientInterface::class, StoryblokClient::class)
-
-        ->set(AssetsApi::class)
-        ->alias(AssetsApiInterface::class,AssetsApi::class)
 
         ->set(DatasourceEntriesApi::class)
         ->alias(DatasourceEntriesApiInterface::class,DatasourceEntriesApi::class)

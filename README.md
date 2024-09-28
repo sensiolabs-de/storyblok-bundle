@@ -34,6 +34,14 @@ If `symfony/flex` is not available, or you prefer manual setup, follow these ste
       token: '%env(STORYBLOK_API_TOKEN)%'
     ```
 
+    If you want to use the AssetsApi, you can also add the following configuration:
+
+    ```yaml
+    storyblok:
+      # ...
+      assets_token: '%env(STORYBLOK_ASSETS_API_TOKEN)%'
+    ```
+
 2. **Set Environment Variables**
    Define the necessary environment variables in your `.env` file:
 

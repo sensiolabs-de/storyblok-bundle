@@ -37,6 +37,9 @@ final class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->isRequired()
                 ->end()
+                ->scalarNode('assets_token')
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 
