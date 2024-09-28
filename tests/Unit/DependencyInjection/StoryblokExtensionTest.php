@@ -16,7 +16,6 @@ namespace SensioLabs\Storyblok\Bundle\Tests\Unit\DependencyInjection;
 use PHPUnit\Framework\TestCase;
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
-use SensioLabs\Storyblok\Api\StoryblokAssetsClient;
 use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\DependencyInjection\StoryblokExtension;
@@ -128,7 +127,7 @@ final class StoryblokExtensionTest extends TestCase
             $builder,
         );
 
-        self::assertFalse($builder->hasDefinition(StoryblokAssetsClient::class));
+        self::assertFalse($builder->hasDefinition('storyblok.assets_client'));
         self::assertFalse($builder->hasAlias(AssetsApiInterface::class));
         self::assertFalse($builder->hasAlias(StoryblokClientInterface::class));
         self::assertFalse($builder->hasDefinition(AssetsApi::class));
@@ -157,7 +156,7 @@ final class StoryblokExtensionTest extends TestCase
             $builder,
         );
 
-        self::assertTrue($builder->hasDefinition(StoryblokAssetsClient::class));
+        self::assertTrue($builder->hasDefinition('storyblok.assets_client'));
         self::assertTrue($builder->hasAlias(AssetsApiInterface::class));
         self::assertTrue($builder->hasAlias(StoryblokClientInterface::class));
         self::assertTrue($builder->hasDefinition(AssetsApi::class));

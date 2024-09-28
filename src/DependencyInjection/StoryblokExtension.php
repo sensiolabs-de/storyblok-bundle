@@ -15,7 +15,6 @@ namespace SensioLabs\Storyblok\Bundle\DependencyInjection;
 
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
-use SensioLabs\Storyblok\Api\StoryblokAssetsClient;
 use SensioLabs\Storyblok\Api\StoryblokClient;
 use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
@@ -63,18 +62,19 @@ final class StoryblokExtension extends Extension
 
     private function configureAssetsApi(ContainerBuilder $container): void
     {
-        $container->setDefinition(
-            StoryblokAssetsClient::class,
-            new Definition(StoryblokAssetsClient::class, [
-                '$token' => $container->getParameter('storyblok_api.assets_token'),
-                '$client' => $container->getDefinition(StoryblokClient::class),
-            ]),
-        );
+        $definition = new Definition(StoryblokClient::class, [
+            '$baseUri' => $container->getParameter('storyblok_api.base_uri'),
+            '$token' => $container->getParameter('storyblok_api.assets_token'),
+        ]);
+
+        $definition->addMethodCall('withHttpClient', [$container->getDefinition('storyblok.client')]);
+
+        $container->setDefinition('storyblok.assets_client', $definition);
 
         $container->setDefinition(
             AssetsApi::class,
             new Definition(AssetsApi::class, [
-                '$client' => $container->getDefinition(StoryblokAssetsClient::class),
+                '$client' => $container->getDefinition('storyblok.assets_client'),
             ]),
         );
 
