@@ -11,7 +11,7 @@ monitoring of Storyblok API interactions.
 To install the bundle run:
 
 ```bash
-composer require sensiolabs-de/storyblok-bundle
+composer require sensiolabs-de/storyblok-api sensiolabs-de/storyblok-bundle
 ```
 
 ## Configuration
