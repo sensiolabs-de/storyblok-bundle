@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace SensioLabs\Storyblok\Bundle\Tests\Util;
+namespace SensioLabs\Storyblok\Bundle\Tests\Double;
 
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
 use SensioLabs\Storyblok\Bundle\Webhook\Handler\WebhookHandlerInterface;

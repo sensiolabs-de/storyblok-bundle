@@ -15,7 +15,7 @@ namespace SensioLabs\Storyblok\Bundle\Tests\Unit\Webhook;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use SensioLabs\Storyblok\Bundle\Tests\Util\TestHandler;
+use SensioLabs\Storyblok\Bundle\Tests\Double\TestHandler;
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
 use SensioLabs\Storyblok\Bundle\Webhook\Exception\UnsupportedEventException;
 use SensioLabs\Storyblok\Bundle\Webhook\Handler\WebhookHandlerInterface;
