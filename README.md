@@ -104,7 +104,7 @@ Once enabled, the bundle will automatically validate each Webhook request agains
 
 #### Handling Webhook Events
 
-To process Webhooks, simply implement the `WebhookHandlerInterface`. The bundle automatically registers any classes
+To process Webhooks, implement the `WebhookHandlerInterface`. The bundle automatically registers any classes
 implementing this interface as Webhook handlers, no additional service configuration is required.
 
 **Example Webhook Handler**
