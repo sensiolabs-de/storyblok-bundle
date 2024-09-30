@@ -29,9 +29,9 @@ final class EventHandlerChainTest extends TestCase
     public function eventIsSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new ConfigurableHandler(true),
-            new ConfigurableHandler(false),
-            new ConfigurableHandler(true),
+            new ConfigurableHandler(supported: true),
+            new ConfigurableHandler(supported: false),
+            new ConfigurableHandler(supported: true),
         ]));
 
         self::assertTrue($chain->supports(Event::StoryPublished));
@@ -43,9 +43,9 @@ final class EventHandlerChainTest extends TestCase
     public function eventIsNotSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new ConfigurableHandler(false),
-            new ConfigurableHandler(false),
-            new ConfigurableHandler(false),
+            new ConfigurableHandler(supported: false),
+            new ConfigurableHandler(supported: false),
+            new ConfigurableHandler(supported: false),
         ]));
 
         self::assertFalse($chain->supports(Event::StoryPublished));
@@ -69,8 +69,8 @@ final class EventHandlerChainTest extends TestCase
     public function handleThrowsUnsupportedEventExceptionWhenNoHandlerIsSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new ConfigurableHandler(false),
-            new ConfigurableHandler(false),
+            new ConfigurableHandler(supported: false),
+            new ConfigurableHandler(supported: false),
         ]));
 
         self::expectException(UnsupportedEventException::class);

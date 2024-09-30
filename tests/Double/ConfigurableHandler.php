@@ -20,11 +20,15 @@ final class ConfigurableHandler implements WebhookHandlerInterface
 {
     public function __construct(
         private bool $supported,
+        private bool $throwException = false,
     ) {
     }
 
     public function handle(Event $event, array $payload): void
     {
+        if ($this->throwException) {
+            throw new \Exception('Test exception');
+        }
     }
 
     public function supports(Event $event): bool
