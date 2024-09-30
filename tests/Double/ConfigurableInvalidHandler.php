@@ -16,7 +16,7 @@ namespace SensioLabs\Storyblok\Bundle\Tests\Double;
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
 use SensioLabs\Storyblok\Bundle\Webhook\Handler\WebhookHandlerInterface;
 
-final class TestThrowsExceptionHandler implements WebhookHandlerInterface
+final class ConfigurableInvalidHandler implements WebhookHandlerInterface
 {
     public function __construct(
         private bool $supported,

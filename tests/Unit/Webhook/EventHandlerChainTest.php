@@ -15,7 +15,7 @@ namespace SensioLabs\Storyblok\Bundle\Tests\Unit\Webhook;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use SensioLabs\Storyblok\Bundle\Tests\Double\TestHandler;
+use SensioLabs\Storyblok\Bundle\Tests\Double\ConfigurableHandler;
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
 use SensioLabs\Storyblok\Bundle\Webhook\Exception\UnsupportedEventException;
 use SensioLabs\Storyblok\Bundle\Webhook\Handler\WebhookHandlerInterface;
@@ -29,9 +29,9 @@ final class EventHandlerChainTest extends TestCase
     public function eventIsSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new TestHandler(true),
-            new TestHandler(false),
-            new TestHandler(true),
+            new ConfigurableHandler(true),
+            new ConfigurableHandler(false),
+            new ConfigurableHandler(true),
         ]));
 
         self::assertTrue($chain->supports(Event::StoryPublished));
@@ -43,9 +43,9 @@ final class EventHandlerChainTest extends TestCase
     public function eventIsNotSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new TestHandler(false),
-            new TestHandler(false),
-            new TestHandler(false),
+            new ConfigurableHandler(false),
+            new ConfigurableHandler(false),
+            new ConfigurableHandler(false),
         ]));
 
         self::assertFalse($chain->supports(Event::StoryPublished));
@@ -69,8 +69,8 @@ final class EventHandlerChainTest extends TestCase
     public function handleThrowsUnsupportedEventExceptionWhenNoHandlerIsSupported(): void
     {
         $chain = $this->getChain(new \ArrayIterator([
-            new TestHandler(false),
-            new TestHandler(false),
+            new ConfigurableHandler(false),
+            new ConfigurableHandler(false),
         ]));
 
         self::expectException(UnsupportedEventException::class);

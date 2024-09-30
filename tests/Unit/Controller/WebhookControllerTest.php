@@ -16,8 +16,8 @@ namespace SensioLabs\Storyblok\Bundle\Tests\Unit\Controller;
 use Monolog\Test\TestCase;
 use Psr\Log\NullLogger;
 use SensioLabs\Storyblok\Bundle\Controller\WebhookController;
-use SensioLabs\Storyblok\Bundle\Tests\Double\TestHandler;
-use SensioLabs\Storyblok\Bundle\Tests\Double\TestThrowsExceptionHandler;
+use SensioLabs\Storyblok\Bundle\Tests\Double\ConfigurableHandler;
+use SensioLabs\Storyblok\Bundle\Tests\Double\ConfigurableInvalidHandler;
 use SensioLabs\Storyblok\Bundle\Tests\Util\FakerTrait;
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
 use SensioLabs\Storyblok\Bundle\Webhook\WebhookEventHandlerChain;
@@ -86,7 +86,7 @@ final class WebhookControllerTest extends TestCase
 
         $controller = new WebhookController(
             $logger,
-            new WebhookEventHandlerChain(new \ArrayIterator([new TestThrowsExceptionHandler(true)]), $logger),
+            new WebhookEventHandlerChain(new \ArrayIterator([new ConfigurableInvalidHandler(true)]), $logger),
         );
 
         $response = $controller->__invoke($request);
@@ -105,7 +105,7 @@ final class WebhookControllerTest extends TestCase
 
         $controller = new WebhookController(
             $logger,
-            new WebhookEventHandlerChain(new \ArrayIterator([new TestHandler(true)]), $logger),
+            new WebhookEventHandlerChain(new \ArrayIterator([new ConfigurableHandler(true)]), $logger),
         );
 
         $response = $controller->__invoke($request);
@@ -124,7 +124,7 @@ final class WebhookControllerTest extends TestCase
 
         $controller = new WebhookController(
             $logger,
-            new WebhookEventHandlerChain(new \ArrayIterator([new TestHandler(true)]), $logger),
+            new WebhookEventHandlerChain(new \ArrayIterator([new ConfigurableHandler(true)]), $logger),
             self::faker()->word(),
         );
 
@@ -145,7 +145,7 @@ final class WebhookControllerTest extends TestCase
 
         $controller = new WebhookController(
             $logger,
-            new WebhookEventHandlerChain(new \ArrayIterator([new TestHandler(true)]), $logger),
+            new WebhookEventHandlerChain(new \ArrayIterator([new ConfigurableHandler(true)]), $logger),
             self::faker()->word(),
         );
 
@@ -170,7 +170,7 @@ final class WebhookControllerTest extends TestCase
 
         $controller = new WebhookController(
             $logger,
-            new WebhookEventHandlerChain(new \ArrayIterator([new TestHandler(true)]), $logger),
+            new WebhookEventHandlerChain(new \ArrayIterator([new ConfigurableHandler(true)]), $logger),
             $secret,
         );
 
