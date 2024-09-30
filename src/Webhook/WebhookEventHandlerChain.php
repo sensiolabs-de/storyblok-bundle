@@ -56,11 +56,7 @@ final readonly class WebhookEventHandlerChain
         }
 
         foreach ($handlers as $handler) {
-            $this->logger->info(\sprintf(
-                'Event %s handled by %s',
-                $event->value,
-                $handler::class,
-            ));
+            $this->logger->info(\sprintf('Event %s handled by %s', $event->value, $handler::class));
 
             $handler->handle($event, $payload);
         }
