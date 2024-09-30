@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use SensioLabs\Storyblok\Bundle\Controller\WebhookController;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
 use SensioLabs\Storyblok\Api\DatasourceEntriesApi;
@@ -13,9 +14,9 @@ use SensioLabs\Storyblok\Api\LinksApiInterface;
 use SensioLabs\Storyblok\Api\StoriesApi;
 use SensioLabs\Storyblok\Api\StoriesApiInterface;
 use SensioLabs\Storyblok\Api\StoryblokClient;
-use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Api\TagsApi;
 use SensioLabs\Storyblok\Api\TagsApiInterface;
+use SensioLabs\Storyblok\Bundle\Webhook\WebhookEventHandlerChain;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -25,6 +26,11 @@ return static function (ContainerConfigurator $container): void {
         ->defaults()
             ->autowire()
             ->autoconfigure()
+
+        ->set(WebhookEventHandlerChain::class)
+
+        ->set(WebhookController::class)
+            ->tag('controller.service_arguments')
 
         ->set('storyblok.http_client')
             ->class(HttpClient::class)

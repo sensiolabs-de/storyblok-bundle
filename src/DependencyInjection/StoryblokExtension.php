@@ -39,6 +39,7 @@ final class StoryblokExtension extends Extension
 
         $container->setParameter('storyblok_api.base_uri', $config['base_uri']);
         $container->setParameter('storyblok_api.token', $config['token']);
+        $container->setParameter('storyblok.webhooks.secret', $config['webhook_secret']);
 
         if (\array_key_exists('assets_token', $config)) {
             $container->setParameter('storyblok_api.assets_token', $config['assets_token']);
