@@ -50,7 +50,7 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
-    public function webhookSecretDefault(): void
+    public function defaults(): void
     {
         $faker = self::faker();
         $url = $faker->url();
