@@ -32,15 +32,18 @@ final class ConfigurationTest extends TestCase
         $url = $faker->url();
         $token = $faker->uuid();
         $secret = $faker->uuid();
+        $version = $faker->randomElement(['draft', 'published']);
 
         self::assertProcessedConfigurationEquals([
             ['base_uri' => $url],
             ['token' => $token],
             ['webhook_secret' => $secret],
+            ['version' => $version],
         ], [
             'base_uri' => $url,
             'token' => $token,
             'webhook_secret' => $secret,
+            'version' => $version,
         ]);
     }
 
@@ -60,6 +63,7 @@ final class ConfigurationTest extends TestCase
             'base_uri' => $url,
             'token' => $token,
             'webhook_secret' => null,
+            'version' => 'published',
         ]);
     }
 

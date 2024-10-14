@@ -60,6 +60,10 @@ return static function (ContainerConfigurator $container): void {
         ->alias(DatasourceEntriesApiInterface::class,DatasourceEntriesApi::class)
 
         ->set(StoriesApi::class)
+            ->args([
+                '$client' => service('storyblok.http_client'),
+                '$version' => param('storyblok.version'),
+            ])
         ->alias(StoriesApiInterface::class,StoriesApi::class)
 
         ->set(LinksApi::class)
