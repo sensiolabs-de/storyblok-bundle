@@ -64,7 +64,7 @@ return static function (ContainerConfigurator $container): void {
         ->set(StoriesApi::class)
             ->args([
                 '$client' => service(StoryblokClient::class),
-                '$version' => param('storyblok.version'),
+                '$version' => param('storyblok_api.version'),
             ])
         ->alias(StoriesApiInterface::class,StoriesApi::class)
 

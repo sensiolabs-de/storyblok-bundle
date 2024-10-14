@@ -42,6 +42,7 @@ final class StoryblokExtensionTest extends TestCase
         $config = [
             ['base_uri' => $baseUri = $faker->url()],
             ['token' => $token = $faker->uuid()],
+            ['version' => $version = $faker->randomElement(['draft', 'published'])],
         ];
 
         $extension->load(
@@ -51,6 +52,7 @@ final class StoryblokExtensionTest extends TestCase
 
         self::assertSame($baseUri, $builder->getParameter('storyblok_api.base_uri'));
         self::assertSame($token, $builder->getParameter('storyblok_api.token'));
+        self::assertSame($version, $builder->getParameter('storyblok_api.version'));
     }
 
     /**

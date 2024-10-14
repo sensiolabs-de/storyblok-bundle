@@ -26,7 +26,7 @@ final readonly class WebhookController
     public function __construct(
         private LoggerInterface $logger,
         private WebhookEventHandlerChain $handlerChain,
-        #[Autowire(param: 'storyblok.webhooks.secret')]
+        #[Autowire(param: 'storyblok_api.webhooks.secret')]
         #[\SensitiveParameter]
         private ?string $webhookSecret = null,
     ) {
