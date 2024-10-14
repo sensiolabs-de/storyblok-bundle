@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\Controller\WebhookController;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
@@ -55,6 +56,7 @@ return static function (ContainerConfigurator $container): void {
                 '$token' => param('storyblok_api.token'),
             ])
             ->call('withHttpClient', [service('storyblok.scoped_http_client')])
+            ->alias(StoryblokClientInterface::class, StoryblokClient::class)
 
         ->set(DatasourceEntriesApi::class)
         ->alias(DatasourceEntriesApiInterface::class,DatasourceEntriesApi::class)
