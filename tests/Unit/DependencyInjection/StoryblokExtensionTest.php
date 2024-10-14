@@ -130,7 +130,7 @@ final class StoryblokExtensionTest extends TestCase
         self::assertFalse($builder->hasDefinition('storyblok.assets.scoped_http_client'));
         self::assertFalse($builder->hasDefinition('storyblok.assets_client'));
         self::assertFalse($builder->hasAlias(AssetsApiInterface::class));
-        self::assertFalse($builder->hasAlias(StoryblokClientInterface::class));
+        self::assertTrue($builder->hasAlias(StoryblokClientInterface::class));
         self::assertFalse($builder->hasDefinition(AssetsApi::class));
         self::assertFalse($builder->hasParameter('storyblok_api.assets_token'));
     }
