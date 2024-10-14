@@ -15,6 +15,7 @@ namespace SensioLabs\Storyblok\Bundle\DependencyInjection;
 
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
+use SensioLabs\Storyblok\Api\Domain\Value\Dto\Version;
 use SensioLabs\Storyblok\Api\StoryblokClient;
 use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
@@ -40,6 +41,7 @@ final class StoryblokExtension extends Extension
         $container->setParameter('storyblok_api.base_uri', $config['base_uri']);
         $container->setParameter('storyblok_api.token', $config['token']);
         $container->setParameter('storyblok.webhooks.secret', $config['webhook_secret']);
+        $container->setParameter('storyblok.version', Version::from($config['version']));
 
         if (\array_key_exists('assets_token', $config)) {
             $container->setParameter('storyblok_api.assets_token', $config['assets_token']);

@@ -43,6 +43,11 @@ final class Configuration implements ConfigurationInterface
                     ->defaultNull()
                     ->cannotBeEmpty()
                 ->end()
+                ->enumNode('version')
+                    ->values(['draft', 'published'])
+                    ->defaultValue('published')
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 
