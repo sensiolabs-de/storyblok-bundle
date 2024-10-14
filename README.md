@@ -64,6 +64,17 @@ Storyblok CMS API.
 For detailed usage and examples, please refer to
 the [Storyblok API SDK documentation](https://github.com/sensiolabs-de/storyblok-api).
 
+### Versions (`draft` and `published`)
+
+Storyblok allows you to work with two versions of your content: `draft` and `published`. By default, the bundle uses the
+`published` version. If you want to use the `draft` version, you can set the `version` parameter in the configuration:
+
+```yaml
+storyblok:
+    # ...
+    version: draft
+```
+
 ### Webhooks
 
 Storyblok Webhooks allow your Symfony application to react to events like content changes. This bundle provides easy
