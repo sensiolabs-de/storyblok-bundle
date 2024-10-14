@@ -57,20 +57,20 @@ return static function (ContainerConfigurator $container): void {
             ->call('withHttpClient', [service('storyblok.scoped_http_client')])
 
         ->set(DatasourceEntriesApi::class)
-        ->alias(DatasourceEntriesApiInterface::class,DatasourceEntriesApi::class)
+        ->alias(DatasourceEntriesApiInterface::class, DatasourceEntriesApi::class)
 
         ->set(StoriesApi::class)
             ->args([
-                '$client' => service('storyblok.http_client'),
+                '$client' => service(StoryblokClient::class),
                 '$version' => param('storyblok.version'),
             ])
         ->alias(StoriesApiInterface::class,StoriesApi::class)
 
         ->set(LinksApi::class)
-        ->alias(LinksApiInterface::class,LinksApi::class)
+        ->alias(LinksApiInterface::class, LinksApi::class)
 
         ->set(TagsApi::class)
-        ->alias(TagsApiInterface::class,TagsApi::class)
+        ->alias(TagsApiInterface::class, TagsApi::class)
 
         ->set(StoryblokCollector::class)
             ->args([
