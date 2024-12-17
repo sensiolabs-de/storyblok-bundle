@@ -14,9 +14,7 @@ declare(strict_types=1);
 namespace SensioLabs\Storyblok\Bundle\Webhook\Handler;
 
 use SensioLabs\Storyblok\Bundle\Webhook\Event;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-#[AutoconfigureTag(self::class)]
 interface WebhookHandlerInterface
 {
     /**

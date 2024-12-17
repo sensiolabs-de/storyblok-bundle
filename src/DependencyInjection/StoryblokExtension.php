@@ -15,11 +15,11 @@ namespace SensioLabs\Storyblok\Bundle\DependencyInjection;
 
 use SensioLabs\Storyblok\Api\AssetsApi;
 use SensioLabs\Storyblok\Api\AssetsApiInterface;
-use SensioLabs\Storyblok\Api\Domain\Value\Dto\Version;
 use SensioLabs\Storyblok\Api\StoryblokClient;
 use SensioLabs\Storyblok\Api\StoryblokClientInterface;
 use SensioLabs\Storyblok\Bundle\DataCollector\StoryblokCollector;
 use SensioLabs\Storyblok\Bundle\Listener\UpdateProfilerListener;
+use SensioLabs\Storyblok\Bundle\Webhook\Handler\WebhookHandlerInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -37,6 +37,9 @@ final class StoryblokExtension extends Extension
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        $container->registerForAutoconfiguration(WebhookHandlerInterface::class)
+            ->addTag(WebhookHandlerInterface::class);
 
         $container->setParameter('storyblok_api.base_uri', $config['base_uri']);
         $container->setParameter('storyblok_api.token', $config['token']);
